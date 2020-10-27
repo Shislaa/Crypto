@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Lab1_Controller">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="539.0" prefWidth="350.0">
+      <children>
+        <TextField fx:id="txt1" layoutX="122.0" layoutY="69.0" prefWidth="157.0" />
+        <TextField fx:id="txt2" layoutX="122.0" layoutY="108.0" onAction="#vf2_Controller" prefWidth="157.0" />
+        <TextArea fx:id="area1" layoutX="122.0" layoutY="152.0" prefWidth="157.0" wrapText="true" />
+        <Button fx:id="vf1" layoutX="170.0" layoutY="351.0" mnemonicParsing="false" onAction="#vf1_Controller" prefHeight="32.0" text="Verify 1" />
+        <Button fx:id="vf2" layoutX="170.0" layoutY="402.0" mnemonicParsing="false" onAction="#vf2_Controller" prefHeight="32.0" text="Verify 2" />
+        <Button id="vf3" fx:id="Clear" layoutX="170.0" layoutY="454.0" mnemonicParsing="false" onAction="#Clear_Controller" prefHeight="32.0" prefWidth="61.0" text="Clear" />
+        <Label layoutX="52.0" layoutY="72.0" text="ISBM" />
+        <Label layoutX="36.0" layoutY="111.0" text="Credit Card" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
