@@ -114,7 +114,18 @@ public class Lab3 {
 			double i = Math.floorMod((int) (iTemp * sochia), 11);
 			double j = Math.floorMod((int) (jTemp * sochia), 11);
 			double btemp = (i*s1 - s2);
-			double sochia2 = inverse((int) (i-j),11);
+			if(btemp < 0){
+				btemp = Math.floorMod((int) btemp, 11);
+			}
+			double sochia2 = 0;
+			if(i-j < 0){
+				int sochiatemp = Math.floorMod((int) (i-j), 11);
+				sochia2 = inverse(sochiatemp,11);
+			}
+			else{
+				sochia2 = inverse((int) (i-j),11);
+			}
+
 			double b = Math.floorMod((int) (btemp * sochia2), 11);
 			double a = Math.floorMod((int) (s1 - b), 11);
 
