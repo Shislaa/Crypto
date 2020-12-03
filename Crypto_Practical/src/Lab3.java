@@ -86,13 +86,19 @@ public class Lab3 {
 
 		else if(P == 0 && Q == 0 && R == 0){
 			int pos = s2/s1;
-			int[] temp = num;
-			String tempS = Arrays.toString(num);
-			temp[pos - 1] = Math.floorMod(temp[pos - 1] - s1, 11);
-			Print_result_T_2(tempS, temp);
-			System.out.println("There a single error at pos = " + pos +" value: " + s1);
-			System.out.println("");
+			if(pos < 1){
+				System.out.println("There are more than 2 errors");
+			}
+			else{
+				int[] temp = num;
+				String tempS = Arrays.toString(num);
+				temp[pos - 1] = Math.floorMod(temp[pos - 1] - s1, 11);
+				Print_result_T_2(tempS, temp);
+				System.out.println("There a single error at pos = " + pos +" value: " + s1);
+			}
+
 		}
+
 		else if(P != 0 || Q != 0 || R != 0){
 			double determinant = Q*Q - 4*P*R;
 			double detersqrt = 0;
