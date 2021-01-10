@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="EnCrypt_Controller">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="200.0" prefWidth="443.0">
+      <children>
+        <Label layoutX="14.0" layoutY="84.0" text="Message 1 and Message 2 must not be empty, please try again">
+          <font>
+            <Font size="15.0" />
+          </font>
+        </Label>
+        <Button fx:id="OK" layoutX="185.0" layoutY="133.0" mnemonicParsing="false" onAction="#OK_Controller" prefHeight="37.9609375" prefWidth="73.0" text="OK" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

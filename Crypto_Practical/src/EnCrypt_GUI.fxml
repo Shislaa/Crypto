@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="EnCrypt_Controller">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="900.0" prefWidth="700.0">
+      <children>
+        <Label layoutX="28.0" layoutY="100.0" text="Message 1:">
+          <font>
+            <Font size="15.0" fx:id="x1" />
+          </font>
+        </Label>
+        <TextArea id="Msg1" fx:id="Msg1_Txt" layoutX="125.0" layoutY="100.0" prefHeight="198.0" prefWidth="543.0" wrapText="true" />
+        <Label font="$x1" layoutX="28.0" layoutY="332.0" text="Message 2:" />
+        <TextArea fx:id="Msg2_Txt" layoutX="125.0" layoutY="332.0" prefHeight="198.0" prefWidth="543.0" wrapText="true" />
+        <Label font="$x1" layoutX="28.0" layoutY="561.0" text="Result:" />
+        <TextArea fx:id="Result_Txt" editable="false" layoutX="125.0" layoutY="561.0" prefHeight="198.0" prefWidth="543.0" wrapText="true" />
+        <Button fx:id="EnC" layoutX="560.0" layoutY="787.0" mnemonicParsing="false" onAction="#EnC_Controller" prefHeight="58.9609375" prefWidth="108.0" text="EnCrypt" />
+        <Button fx:id="Del_All" layoutX="437.0" layoutY="787.0" mnemonicParsing="false" onAction="#Del_All_Controller" prefHeight="58.9609375" prefWidth="108.0" text="Delete All" />
+        <Button fx:id="To_DeC" layoutX="28.0" layoutY="787.0" mnemonicParsing="false" onAction="#To_Dec_Controller" prefHeight="58.9609375" prefWidth="108.0" text="Go to Decrypt" />
+        <Button id="Del_All" fx:id="Cpy_Result" layoutX="314.0" layoutY="787.0" mnemonicParsing="false" onAction="#Copy_Controller" prefHeight="58.9609375" prefWidth="108.0" text="Copy Result" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

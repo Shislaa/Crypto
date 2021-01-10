@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="DeC_Controller">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="200.00009999999747" prefWidth="348.0">
+      <children>
+        <Label layoutX="70.0" layoutY="87.0" text="This data does not exist">
+          <font>
+            <Font size="20.0" />
+          </font>
+        </Label>
+        <Button layoutX="136.0" layoutY="129.0" mnemonicParsing="false" onAction="#OK_ND_Controller" prefHeight="48.9609375" prefWidth="77.0" text="OK" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

@@ -63,7 +63,7 @@ public class Lab5_2 {
 					for(int k = 0; k < result.size();k++){
 						if(result.get(k).equals(s1)){
 							long endTime = System.currentTimeMillis();
-							System.out.println("It takes " + (endTime - startTime)/1000L + " second to find: "+ result.get(k));
+							System.out.println("It takes " + (endTime - startTime) + " milisecond to find: "+ result.get(k));
 							System.out.println("Password is: " + tempoSArray);
 							result.remove(k);
 						}

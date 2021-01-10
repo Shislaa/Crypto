@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefWidth="688.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Lab6_FP_Controller">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="-21.0" layoutY="0.0" prefHeight="800.0" prefWidth="580.0">
+      <children>
+        <Label layoutX="99.0" layoutY="111.0" text="Message Encrypt and Decrypt Application" textAlignment="CENTER">
+          <font>
+            <Font size="30.0" />
+          </font>
+        </Label>
+        <Button fx:id="EnC" layoutX="269.0" layoutY="233.0" mnemonicParsing="false" onAction="#EnC_Controller" prefHeight="138.9609375" prefWidth="212.0" text="Encrypt Your Message">
+          <font>
+            <Font size="15.0" fx:id="x1" />
+          </font>
+        </Button>
+        <Button fx:id="DeC" font="$x1" layoutX="269.0" layoutY="484.0" mnemonicParsing="false" prefHeight="138.9609375" prefWidth="212.0" text="DeCrypt Your Message" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

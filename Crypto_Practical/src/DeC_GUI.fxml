@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="DeC_Controller">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="700.0" prefWidth="900.0">
+      <children>
+        <Label layoutX="33.0" layoutY="73.0" text="Encrypted Message:">
+          <font>
+            <Font size="15.0" fx:id="x1" />
+          </font>
+        </Label>
+        <TextArea fx:id="EnC_Msg" layoutX="181.0" layoutY="73.0" prefHeight="136.0" prefWidth="659.0" wrapText="true" />
+        <Label font="$x1" layoutX="33.0" layoutY="282.0" text="Message 1:" />
+        <TextArea id="Mess1" fx:id="Msg1_Txt" editable="false" layoutX="181.0" layoutY="282.0" prefHeight="136.0" prefWidth="659.0" wrapText="true" />
+        <Label font="$x1" layoutX="33.0" layoutY="441.0" text="Message 2:" />
+        <TextArea fx:id="Msg2_Txt" editable="false" layoutX="181.0" layoutY="441.0" prefHeight="136.0" prefWidth="659.0" wrapText="true" />
+        <Button fx:id="DeC" layoutX="708.0" layoutY="222.0" mnemonicParsing="false" onAction="#DeC_Controller" prefHeight="38.9609375" prefWidth="132.0" text="Decrypt Message" />
+        <Button id="DeC" fx:id="GTE" layoutX="33.0" layoutY="613.0" mnemonicParsing="false" onAction="#GTE_Controller" prefHeight="59.9609375" prefWidth="131.9998779296875" text="Go To Encrypt" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
