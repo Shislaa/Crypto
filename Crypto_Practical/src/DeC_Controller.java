@@ -45,22 +45,23 @@ public class DeC_Controller {
 		}
 		else{
 			String EnStr = EnC_Msg.getText();
-			ArrayList<String> Result = Decrypt1(EnStr);
-			if(Result.isEmpty()){
-				try {
-					Pane root = loader.load(getClass().getResource("DeC_Not_Found.fxml").openStream());
-					Scene scene = new Scene(root);
-					primaryStage.setTitle("E&D App");
-					primaryStage.setScene(scene);
-					primaryStage.show();
-				} catch (IOException e) {
-					e.printStackTrace();
+			if(!EnStr.isEmpty()){
+				if( Decrypt1(EnStr) == null){
+					try {
+						Pane root = loader.load(getClass().getResource("DeC_Not_Found.fxml").openStream());
+						Scene scene = new Scene(root);
+						primaryStage.setTitle("E&D App");
+						primaryStage.setScene(scene);
+						primaryStage.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-			else{
-
-				Msg1_Txt.setText(Result.get(0));
-				Msg2_Txt.setText(Result.get(1));
+				else{
+					ArrayList<String> Result = Decrypt1(EnStr);
+					Msg1_Txt.setText(Result.get(0));
+					Msg2_Txt.setText(Result.get(1));
+				}
 			}
 		}
 	}
@@ -94,7 +95,7 @@ public class DeC_Controller {
 		StringBuilder encrMsg2 = new StringBuilder();
 		List<Integer> numList = new ArrayList<>();
 
-		while(EnStr.charAt(index) != '|'){
+		while(EnStr.charAt(index) != '|' && index > 0){
 			if(index != EnStr.length() - 1){
 				if(EnStr.charAt(index) == '~'){
 					numList.add(num);

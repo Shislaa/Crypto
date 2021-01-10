@@ -21,7 +21,7 @@
             <Font size="15.0" fx:id="x1" />
           </font>
         </Button>
-        <Button fx:id="DeC" font="$x1" layoutX="269.0" layoutY="484.0" mnemonicParsing="false" prefHeight="138.9609375" prefWidth="212.0" text="DeCrypt Your Message" />
+        <Button fx:id="DeC" font="$x1" layoutX="269.0" layoutY="484.0" mnemonicParsing="false" onAction="#DeC_Controller" prefHeight="138.9609375" prefWidth="212.0" text="DeCrypt Your Message" />
       </children>
     </Pane>
   </children>
