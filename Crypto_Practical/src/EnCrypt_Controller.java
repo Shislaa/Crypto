@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -33,6 +34,7 @@ public class EnCrypt_Controller implements Initializable {
 	static int P = fx(rand.nextInt());
 	static int Q = fx(rand.nextInt());
 	static int s = rand.nextInt();
+	static boolean Typ = false;
 	static Map<String,String> mp = new HashMap<>();
 	@FXML
 	Button EnC = new Button();
@@ -48,6 +50,10 @@ public class EnCrypt_Controller implements Initializable {
 	TextArea Msg2_Txt = new TextArea();
 	@FXML
 	TextArea Result_Txt = new TextArea();
+	@FXML
+	CheckBox Type_2 = new CheckBox();
+	@FXML
+	CheckBox Type_1 = new CheckBox();
 
 	@FXML
 	Button OK = new Button();
@@ -121,6 +127,16 @@ public class EnCrypt_Controller implements Initializable {
 		}
 	}
 
+	public void Type_1_Controller(ActionEvent event){
+		Type_2.setSelected(false);
+		Typ = true;
+	}
+
+	public void Type_2_Controller(ActionEvent event){
+		Type_1.setSelected(false);
+		Typ = false;
+	}
+
 	public static Map<String, String> getMp() {
 		return mp;
 	}
@@ -130,20 +146,24 @@ public class EnCrypt_Controller implements Initializable {
 	}
 
 	public static String Encrypt(String msg1, String msg2){
+		System.out.println("Ori msg2 to Hex in Encr: " + msg2);
 		String key = PRG(P,Q,s);
-		String enMsg = XorString(msg2, key);
+		String enMsg = XorString(msg2.toString(), key);
+
 		System.out.println("Secret Msg in EnCryprt: " + enMsg);
 		mp.put(enMsg, key);
 		List<String> BitsList = new ArrayList<>();
-		String enMsgToBit = new BigInteger(enMsg.getBytes()).toString(2);
-
-		for(int i = 0 ; i <= enMsgToBit.length(); i = i + 8){
-			String temp = enMsgToBit.substring(i, i+7);
-			BitsList.add(temp);
+		for ( int i = 0 ; i < enMsg.length(); i ++ ){
+			char c = enMsg.charAt(i);
+			String tempc = Integer.toBinaryString(c);
+			BitsList.add(tempc);
 		}
-		System.out.print("Message encrypted: ");
-		System.out.println(Hide_Your_Msg_1(msg1, BitsList));
-		return Hide_Your_Msg_1(msg1, BitsList);
+		if(Typ == true){
+			return Hide_Your_Msg_1(msg1, BitsList);
+		}
+		else{
+			return Hide_Your_Msg_2(msg1, BitsList);
+		}
 	}
 
 	public static String Hide_Your_Msg_1(String msg1, List<String> BitsList){
@@ -155,7 +175,6 @@ public class EnCrypt_Controller implements Initializable {
 	    	int temp = Integer.parseInt(BitsList.get(i),2);
 	    	tempArr[i] = temp;
 	    }
-		System.out.println("TempArr in Hide yo mes size: " + tempArr.length );
 		sb.append("|");
 		sb.append("~");
 		for(int i = tempArr.length - 1; i >= 0; i -- ){
@@ -172,6 +191,31 @@ public class EnCrypt_Controller implements Initializable {
 		return result;
 	}
 
+	public static String Hide_Your_Msg_2(String msg1, List<String> BitsList){
+		int[] tempArr = new int[BitsList.size()];
+		StringBuilder sb = new StringBuilder();
+
+		for(int i = 0 ; i < BitsList.size(); i++){
+	    	int temp = Integer.parseInt(BitsList.get(i),2);
+	    	tempArr[i] = temp;
+	    }
+
+		for(int i = 0; i < tempArr.length + 1;i++){
+			sb.append("[");
+			if(i == 0){
+				sb.append(tempArr.length + 1);
+			}
+			else{
+				int newVal = tempArr[i - 1];
+				sb.append(newVal);
+			}
+			sb.append("]");
+		}
+
+		String result = sb.toString() + msg1;
+
+		return result;
+	}
 // Xor the msg and the key to create an encrypted String
 	public static String XorString(String s1, String key){
 		StringBuilder sb = new StringBuilder();

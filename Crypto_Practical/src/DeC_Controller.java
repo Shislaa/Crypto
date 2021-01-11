@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class DeC_Controller {
 	@FXML
 	Button OK_ND = new Button();
 
-	public void DeC_Controller(ActionEvent event){
+	public void DeC_Controller(ActionEvent event) throws UnsupportedEncodingException{
 		Stage primaryStage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		EnCrypt_Controller EnC_Con = loader.getController();
@@ -46,21 +47,41 @@ public class DeC_Controller {
 		else{
 			String EnStr = EnC_Msg.getText();
 			if(!EnStr.isEmpty()){
-				if( Decrypt1(EnStr) == null){
-					try {
-						Pane root = loader.load(getClass().getResource("DeC_Not_Found.fxml").openStream());
-						Scene scene = new Scene(root);
-						primaryStage.setTitle("E&D App");
-						primaryStage.setScene(scene);
-						primaryStage.show();
-					} catch (IOException e) {
-						e.printStackTrace();
+				if(EnStr.charAt(0) != '['){
+					if( Decrypt1(EnStr) == null){
+						try {
+							Pane root = loader.load(getClass().getResource("DeC_Not_Found.fxml").openStream());
+							Scene scene = new Scene(root);
+							primaryStage.setTitle("E&D App");
+							primaryStage.setScene(scene);
+							primaryStage.show();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					else{
+						ArrayList<String> Result = Decrypt1(EnStr);
+						Msg1_Txt.setText(Result.get(0));
+						Msg2_Txt.setText(Result.get(1));
 					}
 				}
 				else{
-					ArrayList<String> Result = Decrypt1(EnStr);
-					Msg1_Txt.setText(Result.get(0));
-					Msg2_Txt.setText(Result.get(1));
+					if( Decrypt_2(EnStr) == null){
+						try {
+							Pane root = loader.load(getClass().getResource("DeC_Not_Found.fxml").openStream());
+							Scene scene = new Scene(root);
+							primaryStage.setTitle("E&D App");
+							primaryStage.setScene(scene);
+							primaryStage.show();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					else{
+						ArrayList<String> Result = Decrypt_2(EnStr);
+						Msg1_Txt.setText(Result.get(0));
+						Msg2_Txt.setText(Result.get(1));
+					}
 				}
 			}
 		}
@@ -86,7 +107,7 @@ public class DeC_Controller {
 		((Node)event.getSource()).getScene().getWindow().hide();
 	}
 
-	public static ArrayList<String> Decrypt1(String EnStr){
+	public static ArrayList<String> Decrypt1(String EnStr) throws UnsupportedEncodingException{
 		FXMLLoader loader = new FXMLLoader();
 		EnCrypt_Controller EnC_Con = loader.getController();
 		int index = EnStr.length() - 1;
@@ -129,15 +150,86 @@ public class DeC_Controller {
 			msg2 = XorString(encrMsg2.toString(), key);
 			System.out.println("Original Message 1: " + EnStr);
 			System.out.println("Original Message 2: " + msg2);
-
 			ArrayList<String> temp = new ArrayList<>();
 			temp.add(EnStr);
 			temp.add(msg2);
 			return temp;
 		}
-		ArrayList<String> temp = new ArrayList<>();
+
 		return null;
 
+	}
+
+	public static ArrayList<String> Decrypt_2(String EnStr) throws UnsupportedEncodingException{
+		FXMLLoader loader = new FXMLLoader();
+		EnCrypt_Controller EnC_Con = loader.getController();
+		List<Integer> numList = new ArrayList<>();
+
+		int index = 0;
+		int temp = 0;
+		int passlen = 0;
+		int m2len = 0;
+		StringBuilder sb = new StringBuilder();
+		int valTemp2 = 0;
+
+		while(EnStr.charAt(index) != ']'){
+			if(EnStr.charAt(index) != '['){
+				valTemp2 = (10 * valTemp2) + Character.getNumericValue(EnStr.charAt(index)) ;
+			}
+			index++;
+		}
+		passlen = valTemp2;
+		index = 0;
+
+		System.out.println("PassLen DeC_2: " + passlen);
+
+		for(int i = 0 ; i < passlen; i ++){
+			int valTemp = 0;
+			while(EnStr.charAt(index) != ']'){
+				if(EnStr.charAt(index) != '['){
+					valTemp = (10 * valTemp) + Character.getNumericValue(EnStr.charAt(index)) ;
+				}
+				index++;
+			}
+			index++;
+			if(i > 0){
+				numList.add(valTemp);
+				System.out.println("Mul Value in DeC_2 " + valTemp);
+			}
+		}
+
+
+
+		m2len = index;
+
+		for(int i = 0 ; i < numList.size();i++){
+			char[] c = Character.toChars(numList.get(i));
+			sb.append(c);
+		}
+		System.out.println("EnCrt Msg in Decrypt: " + sb.toString());
+
+		String msg2 = " ";
+		EnStr = EnStr.substring(m2len);
+		if(EnC_Con.getMp().containsKey(sb.toString())){
+			String key = EnC_Con.getMp().get(sb.toString());
+			msg2 = XorString(sb.toString(), key);
+			System.out.println("Original Message 1: " + EnStr);
+			System.out.println("Original Message 2: " + sb.toString());
+			ArrayList<String> temp2 = new ArrayList<>();
+			temp2.add(EnStr);
+			temp2.add(msg2);
+			return temp2;
+		}
+		return null;
+	}
+
+	public static String fromHex(String hex) throws UnsupportedEncodingException {
+	    hex = hex.replaceAll("^(00)+", "");
+	    byte[] bytes = new byte[hex.length() / 2];
+	    for (int i = 0; i < hex.length(); i += 2) {
+	        bytes[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4) + Character.digit(hex.charAt(i + 1), 16));
+	    }
+	    return new String(bytes);
 	}
 
 	// Xor the msg and the key to create an encrypted String

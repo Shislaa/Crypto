@@ -25,6 +25,9 @@
         <Button fx:id="Del_All" layoutX="437.0" layoutY="787.0" mnemonicParsing="false" onAction="#Del_All_Controller" prefHeight="58.9609375" prefWidth="108.0" text="Delete All" />
         <Button fx:id="To_DeC" layoutX="28.0" layoutY="787.0" mnemonicParsing="false" onAction="#To_Dec_Controller" prefHeight="58.9609375" prefWidth="108.0" text="Go to Decrypt" />
         <Button id="Del_All" fx:id="Cpy_Result" layoutX="314.0" layoutY="787.0" mnemonicParsing="false" onAction="#Copy_Controller" prefHeight="58.9609375" prefWidth="108.0" text="Copy Result" />
+        <CheckBox fx:id="Type_2" layoutX="168.0" layoutY="805.0" mnemonicParsing="false" onAction="#Type_2_Controller" selected="true" text="Using &quot;[ number ]&quot;" />
+        <CheckBox fx:id="Type_1" layoutX="168.0" layoutY="830.0" mnemonicParsing="false" onAction="#Type_1_Controller" text="Using &quot;| ~&quot;" />
+        <Label layoutX="168.0" layoutY="779.0" text="Type of Encrypt" />
       </children>
     </Pane>
   </children>
