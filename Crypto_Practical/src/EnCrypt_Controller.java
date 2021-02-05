@@ -34,6 +34,7 @@ public class EnCrypt_Controller implements Initializable {
 	static int P = fx(rand.nextInt());
 	static int Q = fx(rand.nextInt());
 	static int s = rand.nextInt();
+	static int s_Ori = s;
 	static boolean Typ = false;
 	static Map<String,String> mp = new HashMap<>();
 	@FXML
